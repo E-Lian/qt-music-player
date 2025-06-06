@@ -10,10 +10,16 @@
 class PlayerControl: public QObject {
     Q_OBJECT
 
+signals:
+    void durationReady(const QString &d);
+
 public:
     explicit PlayerControl(QObject* parent = nullptr);
     void play();
+    void pause();
     QString getName();
+    QString getLength();
+    bool isPlaying();
 
 private:
     QMediaPlayer *player;

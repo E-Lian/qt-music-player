@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     playerControl = new PlayerControl(this);
+    connect(playerControl, &PlayerControl::durationReady, this, [this](const QString &durationStr) {
+        ui->fileLength->setText(durationStr);
+    });
 }
 
 MainWindow::~MainWindow()
@@ -16,9 +19,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_playBtn_clicked()
 {
-    playerControl->play();
+    if (playerControl->isPlaying()) {
+        playerControl->pause();
+    } else {
+        playerControl->play();
 
-    // show file name and length (maybe not length, we'll see)
-    ui->fileName->setText(playerControl->getName());
+        // show file name and length
+        ui->fileName->setText(playerControl->getName());
+    }
 }
 
