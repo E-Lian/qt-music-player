@@ -17,6 +17,7 @@ public:
     explicit PlayerControl(QObject* parent = nullptr);
     void play();
     void pause();
+    void setMedia(QUrl url);
     QString getName();
     QString getLength();
     bool isPlaying();

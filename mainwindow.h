@@ -4,6 +4,7 @@
 #include "PlayerControl.h"
 
 #include <QMainWindow>
+#include <QFileDialog>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,6 +22,8 @@ public:
 
 private slots:
     void on_playBtn_clicked();
+
+    void on_actionOpen_File_triggered();
 
 private:
     Ui::MainWindow *ui;

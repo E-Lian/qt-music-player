@@ -6,60 +6,83 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>288</height>
+    <width>532</width>
+    <height>281</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="fileLength">
+    <property name="geometry">
+     <rect>
+      <x>1</x>
+      <y>100</y>
+      <width>521</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>File length</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fileName">
+    <property name="geometry">
+     <rect>
+      <x>-4</x>
+      <y>50</y>
+      <width>531</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>File name</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
    <widget class="QPushButton" name="playBtn">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>220</y>
-      <width>81</width>
-      <height>20</height>
+      <x>230</x>
+      <y>190</y>
+      <width>80</width>
+      <height>18</height>
      </rect>
     </property>
     <property name="text">
      <string>Play/Pause</string>
     </property>
    </widget>
-   <widget class="QLabel" name="fileName">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>100</y>
-      <width>461</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>File Name</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="fileLength">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>170</y>
-      <width>461</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>File Length</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
   </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>532</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuOpen">
+    <property name="title">
+     <string>Open</string>
+    </property>
+    <addaction name="actionOpen_File"/>
+   </widget>
+   <addaction name="menuOpen"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen_File">
+   <property name="text">
+    <string>Open File</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     playerControl = new PlayerControl(this);
+
+    // set file length when ready
     connect(playerControl, &PlayerControl::durationReady, this, [this](const QString &durationStr) {
         ui->fileLength->setText(durationStr);
     });
@@ -23,9 +25,15 @@ void MainWindow::on_playBtn_clicked()
         playerControl->pause();
     } else {
         playerControl->play();
-
-        // show file name and length
-        ui->fileName->setText(playerControl->getName());
     }
 }
 
+
+void MainWindow::on_actionOpen_File_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file"), "");   ///
+    playerControl->setMedia(QUrl(fileName));
+
+    // show file name
+    ui->fileName->setText(playerControl->getName());
+}

@@ -15,16 +15,18 @@ PlayerControl::PlayerControl(QObject* parent)
 }
 
 void PlayerControl::play() {
-    if (!player->source().isValid()) {
-        QDir dir;
-        QString relativePath = "../../media files/Sufjan Stevens - Carrie & Lowell (10th Anniversary Edition) - 01 Death with Dignity.wav";  //
-        QString absolutePath = dir.absoluteFilePath(relativePath);
-        player->setSource(QUrl::fromLocalFile(absolutePath));
-        player->play();
-    } else {
+    // if (!player->source().isValid()) {
+    //     // QDir dir;
+    //     // QString relativePath = "../../media files/Sufjan Stevens - Carrie & Lowell (10th Anniversary Edition) - 01 Death with Dignity.wav";  //
+    //     // QString absolutePath = dir.absoluteFilePath(relativePath);
+    //     // player->setSource(QUrl::fromLocalFile(absolutePath));
+    //     player->play();
+    // } else {
+    //     player->play();
+    // }
+    if (player->source().isValid()) {
         player->play();
     }
-
 }
 
 void PlayerControl::pause() {
@@ -35,6 +37,10 @@ QString PlayerControl::getName() {
     QUrl sourceUrl = player->source();
     QString fileName = sourceUrl.fileName();
     return fileName;
+}
+
+void PlayerControl::setMedia(QUrl url) {
+    player->setSource(url);
 }
 
 QString PlayerControl::getLength() {

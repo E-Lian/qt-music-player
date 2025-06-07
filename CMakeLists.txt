@@ -11,9 +11,11 @@ qt_add_executable(qt-music-player
     main.cpp
     mainwindow.cpp
     mainwindow.h
-    mainwindow.ui
+
     PlayerControl.h
     PlayerControl.cpp
+    mainwindow.ui
+
 )
 
 target_link_libraries(qt-music-player
