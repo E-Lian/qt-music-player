@@ -25,6 +25,8 @@ private slots:
 
     void on_actionOpen_File_triggered();
 
+    void on_volumeCtr_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     PlayerControl *playerControl;

@@ -23,8 +23,12 @@ void MainWindow::on_playBtn_clicked()
 {
     if (playerControl->isPlaying()) {
         playerControl->pause();
+        ui->playBtn->setText("Play");
     } else {
-        playerControl->play();
+        bool tmp = playerControl->play();
+        if (tmp) {
+            ui->playBtn->setText("Pause");
+        }
     }
 }
 
@@ -37,3 +41,9 @@ void MainWindow::on_actionOpen_File_triggered()
     // show file name
     ui->fileName->setText(playerControl->getName());
 }
+
+void MainWindow::on_volumeCtr_valueChanged(int value)
+{
+    playerControl->setVolume(value);
+}
+

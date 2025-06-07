@@ -14,18 +14,12 @@ PlayerControl::PlayerControl(QObject* parent)
     });
 }
 
-void PlayerControl::play() {
-    // if (!player->source().isValid()) {
-    //     // QDir dir;
-    //     // QString relativePath = "../../media files/Sufjan Stevens - Carrie & Lowell (10th Anniversary Edition) - 01 Death with Dignity.wav";  //
-    //     // QString absolutePath = dir.absoluteFilePath(relativePath);
-    //     // player->setSource(QUrl::fromLocalFile(absolutePath));
-    //     player->play();
-    // } else {
-    //     player->play();
-    // }
+bool PlayerControl::play() {
     if (player->source().isValid()) {
         player->play();
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -33,14 +27,19 @@ void PlayerControl::pause() {
     player->pause();
 }
 
+void PlayerControl::setMedia(QUrl url) {
+    player->setSource(url);
+}
+
+void PlayerControl::setVolume(int volume) {
+    float value = ((float) volume) / 100;
+    audioOutput->setVolume(value);
+}
+
 QString PlayerControl::getName() {
     QUrl sourceUrl = player->source();
     QString fileName = sourceUrl.fileName();
     return fileName;
-}
-
-void PlayerControl::setMedia(QUrl url) {
-    player->setSource(url);
 }
 
 QString PlayerControl::getLength() {

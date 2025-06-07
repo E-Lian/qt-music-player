@@ -15,9 +15,10 @@ signals:
 
 public:
     explicit PlayerControl(QObject* parent = nullptr);
-    void play();
+    bool play();
     void pause();
     void setMedia(QUrl url);
+    void setVolume(int volume);
     QString getName();
     QString getLength();
     bool isPlaying();
