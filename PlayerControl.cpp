@@ -42,6 +42,13 @@ void PlayerControl::setVolume(int volume) {
     audioOutput->setVolume(value);
 }
 
+// sets playback position
+// pos: position of slider (max 100)
+void PlayerControl::setPosition(int pos) {
+    qint64 value = pos * getLength() / 100;
+    player->setPosition(value);
+}
+
 QString PlayerControl::getName() {
     QUrl sourceUrl = player->source();
     QString fileName = sourceUrl.fileName();
@@ -53,7 +60,7 @@ QString PlayerControl::getLengthString() {
     return formatTime(l);
 }
 
-int PlayerControl::getLength() {
+qint64 PlayerControl::getLength() {
     return fileLength;
 }
 

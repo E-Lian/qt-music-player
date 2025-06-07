@@ -7,15 +7,20 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     playerControl = new PlayerControl(this);
+    posSliderPressed = false;
 
     // set file length when ready
     connect(playerControl, &PlayerControl::durationReady, this, [this](const QString &duration) {
         ui->fileLength->setText(duration);
     });
-    // set playback position
+    // set playback positions
     connect(playerControl, &PlayerControl::positionReady, this, [this](const qint64 &position) {
-        ui->currPos->setText(playerControl->formatTime(position));
-        ui->posCtr->setValue((int) 100 * position / playerControl->getLength());
+        if (!posSliderPressed) {
+            // update slider
+            ui->posCtr->setValue((int) 100 * position / playerControl->getLength());
+            // update label
+            ui->currPos->setText(playerControl->formatTime(position));
+        }
     });
 
 }
@@ -38,7 +43,6 @@ void MainWindow::on_playBtn_clicked()
     }
 }
 
-
 void MainWindow::on_actionOpen_File_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file"), "");   ///
@@ -52,3 +56,16 @@ void MainWindow::on_volumeCtr_valueChanged(int value)
 {
     playerControl->setVolume(value);
 }
+
+void MainWindow::on_posCtr_sliderPressed()
+{
+    posSliderPressed = true;
+}
+
+
+void MainWindow::on_posCtr_sliderReleased()
+{
+    posSliderPressed = false;
+    playerControl->setPosition(ui->posCtr->sliderPosition());
+}
+
