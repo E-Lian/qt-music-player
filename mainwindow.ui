@@ -14,22 +14,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="fileLength">
-    <property name="geometry">
-     <rect>
-      <x>1</x>
-      <y>100</y>
-      <width>521</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>File length</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignmentFlag::AlignCenter</set>
-    </property>
-   </widget>
    <widget class="QLabel" name="fileName">
     <property name="geometry">
      <rect>
@@ -79,6 +63,54 @@
     </property>
     <property name="orientation">
      <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="posCtr">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>139</y>
+      <width>371</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="maximum">
+     <number>100</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="currPos">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>145</y>
+      <width>37</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>00:00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fileLength">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>140</y>
+      <width>37</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>00:00</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
     </property>
    </widget>
   </widget>

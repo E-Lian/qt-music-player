@@ -12,6 +12,7 @@ class PlayerControl: public QObject {
 
 signals:
     void durationReady(const QString &d);
+    void positionReady(const qint64 &d);
 
 public:
     explicit PlayerControl(QObject* parent = nullptr);
@@ -20,12 +21,16 @@ public:
     void setMedia(QUrl url);
     void setVolume(int volume);
     QString getName();
-    QString getLength();
+    QString getLengthString();
+    int getLength();
     bool isPlaying();
+    QString formatTime(int t);
 
 private:
     QMediaPlayer *player;
     QAudioOutput *audioOutput;
+    int fileLength;
+    int currPos;
 };
 
 #endif // PLAYERCONTROL_H

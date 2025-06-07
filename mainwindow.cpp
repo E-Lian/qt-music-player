@@ -9,9 +9,15 @@ MainWindow::MainWindow(QWidget *parent)
     playerControl = new PlayerControl(this);
 
     // set file length when ready
-    connect(playerControl, &PlayerControl::durationReady, this, [this](const QString &durationStr) {
-        ui->fileLength->setText(durationStr);
+    connect(playerControl, &PlayerControl::durationReady, this, [this](const QString &duration) {
+        ui->fileLength->setText(duration);
     });
+    // set playback position
+    connect(playerControl, &PlayerControl::positionReady, this, [this](const qint64 &position) {
+        ui->currPos->setText(playerControl->formatTime(position));
+        ui->posCtr->setValue((int) 100 * position / playerControl->getLength());
+    });
+
 }
 
 MainWindow::~MainWindow()
@@ -46,4 +52,3 @@ void MainWindow::on_volumeCtr_valueChanged(int value)
 {
     playerControl->setVolume(value);
 }
-

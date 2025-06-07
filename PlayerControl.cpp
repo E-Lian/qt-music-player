@@ -9,8 +9,14 @@ PlayerControl::PlayerControl(QObject* parent)
 
     // update duration when it's changed
     connect(player, &QMediaPlayer::durationChanged, this, [this](qint64 durationMs) {
-        QString formatted = getLength();
-        emit durationReady(formatted);
+        fileLength = durationMs;
+        QString length = getLengthString();
+        emit durationReady(length);
+    });
+    // update playback position
+    connect(player, &QMediaPlayer::positionChanged, this, [this](qint64 ms) {
+        currPos = ms;
+        emit positionReady(ms);
     });
 }
 
@@ -42,9 +48,17 @@ QString PlayerControl::getName() {
     return fileName;
 }
 
-QString PlayerControl::getLength() {
-    int l = (int) player->duration();
-    int totalSeconds = l / 1000;
+QString PlayerControl::getLengthString() {
+    int l = player->duration();
+    return formatTime(l);
+}
+
+int PlayerControl::getLength() {
+    return fileLength;
+}
+
+QString PlayerControl::formatTime(int t)  {
+    int totalSeconds = t / 1000;
     int minutes = totalSeconds / 60;
     int seconds = totalSeconds % 60;
     return QString("%1:%2")
