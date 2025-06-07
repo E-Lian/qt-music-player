@@ -27,8 +27,13 @@ private slots:
 
     void on_volumeCtr_valueChanged(int value);
 
+    void on_posCtr_sliderPressed();
+
+    void on_posCtr_sliderReleased();
+
 private:
     Ui::MainWindow *ui;
     PlayerControl *playerControl;
+    bool posSliderPressed;
 };
 #endif // MAINWINDOW_H

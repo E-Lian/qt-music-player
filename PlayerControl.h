@@ -20,9 +20,10 @@ public:
     void pause();
     void setMedia(QUrl url);
     void setVolume(int volume);
+    void setPosition(int pos);
     QString getName();
     QString getLengthString();
-    int getLength();
+    qint64 getLength();
     bool isPlaying();
     QString formatTime(int t);
 
