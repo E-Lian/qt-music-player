@@ -48,8 +48,6 @@ void MainWindow::on_actionOpen_File_triggered()
     QString file = QFileDialog::getOpenFileName(this, tr("Select audio file"), "");   ///
     QUrl fileUrl = QUrl(file);
 
-    playerControl->setMedia(fileUrl);
-
     // add file to list
     new PlaylistItem(ui->playList, fileUrl);
 }
@@ -69,5 +67,13 @@ void MainWindow::on_posCtr_sliderReleased()
 {
     posSliderPressed = false;
     playerControl->setPosition(ui->posCtr->sliderPosition());
+}
+
+
+void MainWindow::on_playList_itemDoubleClicked(QListWidgetItem *item)
+{
+    PlaylistItem *media = (PlaylistItem *) item;
+    playerControl->setMedia(media->getUrl());
+    ui->fileName->setText(media->getName());
 }
 

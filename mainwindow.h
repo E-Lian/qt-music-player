@@ -32,6 +32,8 @@ private slots:
 
     void on_posCtr_sliderReleased();
 
+    void on_playList_itemDoubleClicked(QListWidgetItem *item);
+
 private:
     Ui::MainWindow *ui;
     PlayerControl *playerControl;

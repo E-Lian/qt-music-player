@@ -20,7 +20,9 @@ PlayerControl::PlayerControl(QObject *parent) : QObject(parent) {
 }
 
 bool PlayerControl::play() {
-    if (player->source().isValid()) {
+    if (player->mediaStatus() == QMediaPlayer::LoadedMedia
+        || player->mediaStatus() == QMediaPlayer::BufferedMedia
+        || player->mediaStatus() == QMediaPlayer::BufferingMedia) {
         player->play();
         return true;
     } else {
