@@ -45,11 +45,13 @@ void MainWindow::on_playBtn_clicked()
 
 void MainWindow::on_actionOpen_File_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Select audio file"), "");   ///
-    playerControl->setMedia(QUrl(fileName));
+    QString file = QFileDialog::getOpenFileName(this, tr("Select audio file"), "");   ///
+    QUrl fileUrl = QUrl(file);
 
-    // show file name
-    ui->fileName->setText(playerControl->getName());
+    playerControl->setMedia(fileUrl);
+
+    // add file to list
+    new PlaylistItem(ui->playList, fileUrl);
 }
 
 void MainWindow::on_volumeCtr_valueChanged(int value)

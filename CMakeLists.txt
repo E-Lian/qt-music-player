@@ -15,6 +15,10 @@ qt_add_executable(qt-music-player
     PlayerControl.h
     PlayerControl.cpp
     mainwindow.ui
+    PlaylistItem.h
+    PlaylistItem.cpp
+
+
 
 )
 

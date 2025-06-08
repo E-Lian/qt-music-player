@@ -1,8 +1,7 @@
 #include "PlayerControl.h"
 
 
-PlayerControl::PlayerControl(QObject* parent)
-    : QObject(parent) {
+PlayerControl::PlayerControl(QObject *parent) : QObject(parent) {
     player = new QMediaPlayer(this);
     audioOutput = new QAudioOutput(this);
     player->setAudioOutput(audioOutput);

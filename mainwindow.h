@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "PlayerControl.h"
+#include "PlaylistItem.h"
 
 #include <QMainWindow>
 #include <QFileDialog>
