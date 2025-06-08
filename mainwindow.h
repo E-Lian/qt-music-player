@@ -38,5 +38,6 @@ private:
     Ui::MainWindow *ui;
     PlayerControl *playerControl;
     bool posSliderPressed;
+    void playNext();
 };
 #endif // MAINWINDOW_H

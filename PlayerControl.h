@@ -13,6 +13,7 @@ class PlayerControl: public QObject {
 signals:
     void durationReady(const QString &d);
     void positionReady(const qint64 &d);
+    void mediaEnd();
 
 public:
     explicit PlayerControl(QObject* parent = nullptr);

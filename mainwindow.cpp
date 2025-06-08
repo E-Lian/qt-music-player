@@ -22,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent)
             ui->currPos->setText(playerControl->formatTime(position));
         }
     });
+    // gets notified when end of file
+    connect(playerControl, &PlayerControl::mediaEnd, this, [this]() {
+        // play next media
+        playNext();
+    });
 
 }
 
@@ -77,3 +82,19 @@ void MainWindow::on_playList_itemDoubleClicked(QListWidgetItem *item)
     ui->fileName->setText(media->getName());
 }
 
+void MainWindow::playNext() {
+    // get next item
+    int curr = ui->playList->currentRow();
+    PlaylistItem *next = (PlaylistItem *) ui->playList->item(curr + 1);
+    // goes back to first one if reached the end
+    if (next == nullptr) {
+        next = (PlaylistItem *) ui->playList->item(0);
+    }
+    // set media to next
+    playerControl->setMedia(next->getUrl());
+    // update ui
+    ui->fileName->setText(next->getName());
+    ui->playList->setCurrentItem(next);
+    // play media
+    playerControl->play();
+}

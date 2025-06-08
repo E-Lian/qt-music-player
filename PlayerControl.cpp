@@ -17,17 +17,17 @@ PlayerControl::PlayerControl(QObject *parent) : QObject(parent) {
         currPos = ms;
         emit positionReady(ms);
     });
+    // reminds system to play next file
+    connect(player, &QMediaPlayer::mediaStatusChanged, this, [this](QMediaPlayer::MediaStatus status) {
+        if (status == QMediaPlayer::EndOfMedia) {
+            emit mediaEnd();
+        }
+    });
 }
 
 bool PlayerControl::play() {
-    if (player->mediaStatus() == QMediaPlayer::LoadedMedia
-        || player->mediaStatus() == QMediaPlayer::BufferedMedia
-        || player->mediaStatus() == QMediaPlayer::BufferingMedia) {
-        player->play();
-        return true;
-    } else {
-        return false;
-    }
+    player->play();
+    return player->isPlaying();
 }
 
 void PlayerControl::pause() {
