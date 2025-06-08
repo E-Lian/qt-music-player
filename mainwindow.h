@@ -34,10 +34,15 @@ private slots:
 
     void on_playList_itemDoubleClicked(QListWidgetItem *item);
 
+    void on_nextBtn_clicked();
+
+    void on_prevBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     PlayerControl *playerControl;
     bool posSliderPressed;
     void playNext();
+    void playPrev();
 };
 #endif // MAINWINDOW_H

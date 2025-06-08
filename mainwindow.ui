@@ -33,7 +33,7 @@
    <widget class="QPushButton" name="playBtn">
     <property name="geometry">
      <rect>
-      <x>180</x>
+      <x>120</x>
       <y>280</y>
       <width>80</width>
       <height>18</height>
@@ -49,7 +49,7 @@
       <x>300</x>
       <y>280</y>
       <width>160</width>
-      <height>16</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="maximum">
@@ -121,6 +121,32 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="prevBtn">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>280</y>
+      <width>51</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Prev</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="nextBtn">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>280</y>
+      <width>51</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Next</string>
     </property>
    </widget>
   </widget>

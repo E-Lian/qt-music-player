@@ -98,3 +98,32 @@ void MainWindow::playNext() {
     // play media
     playerControl->play();
 }
+
+void MainWindow::playPrev() {
+    // get prev item
+    int curr = ui->playList->currentRow();
+    PlaylistItem *prev = (PlaylistItem *) ui->playList->item(curr - 1);
+    // goes back to last one if reached the end
+    if (prev == nullptr) {
+        prev = (PlaylistItem *) ui->playList->item(ui->playList->count() - 1);
+    }
+    // set media to prev
+    playerControl->setMedia(prev->getUrl());
+    // update ui
+    ui->fileName->setText(prev->getName());
+    ui->playList->setCurrentItem(prev);
+    // play media
+    playerControl->play();
+}
+
+void MainWindow::on_nextBtn_clicked()
+{
+    playNext();
+}
+
+
+void MainWindow::on_prevBtn_clicked()
+{
+    playPrev();
+}
+
