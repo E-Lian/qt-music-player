@@ -6,6 +6,8 @@
 
 #include <QMainWindow>
 #include <QFileDialog>
+#include <QSqlDatabase>
+#include <QDebug>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -37,6 +39,8 @@ private slots:
     void on_nextBtn_clicked();
 
     void on_prevBtn_clicked();
+
+    void on_actionAdd_Background_Image_triggered();
 
 private:
     Ui::MainWindow *ui;

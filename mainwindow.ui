@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>548</width>
-    <height>364</height>
+    <width>545</width>
+    <height>361</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -149,13 +149,36 @@
      <string>Next</string>
     </property>
    </widget>
+   <widget class="QLabel" name="bgIm">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>541</width>
+      <height>341</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>bgIm</zorder>
+   <zorder>fileName</zorder>
+   <zorder>playBtn</zorder>
+   <zorder>volumeCtr</zorder>
+   <zorder>posCtr</zorder>
+   <zorder>currPos</zorder>
+   <zorder>playList</zorder>
+   <zorder>fileLength</zorder>
+   <zorder>prevBtn</zorder>
+   <zorder>nextBtn</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>548</width>
+     <width>545</width>
      <height>17</height>
     </rect>
    </property>
@@ -165,12 +188,24 @@
     </property>
     <addaction name="actionOpen_File"/>
    </widget>
+   <widget class="QMenu" name="menuAppearance">
+    <property name="title">
+     <string>Appearance</string>
+    </property>
+    <addaction name="actionAdd_Background_Image"/>
+   </widget>
    <addaction name="menuOpen"/>
+   <addaction name="menuAppearance"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionOpen_File">
    <property name="text">
     <string>Open File</string>
+   </property>
+  </action>
+  <action name="actionAdd_Background_Image">
+   <property name="text">
+    <string>Add Background Image</string>
    </property>
   </action>
  </widget>

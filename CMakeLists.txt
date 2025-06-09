@@ -3,6 +3,8 @@ project(qt-music-player LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
 find_package(Qt6 REQUIRED COMPONENTS Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS Sql)
+find_package(Qt6 REQUIRED COMPONENTS Gui)
 
 qt_standard_project_setup()
 
@@ -27,6 +29,8 @@ target_link_libraries(qt-music-player
         Qt::Core
         Qt::Widgets
         Qt6::Multimedia
+        Qt6::Sql
+        Qt6::Gui
 )
 
 include(GNUInstallDirs)

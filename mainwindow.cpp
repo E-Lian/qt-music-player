@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent)
         playNext();
     });
 
+
+    qDebug() << QSqlDatabase::drivers();
 }
 
 MainWindow::~MainWindow()
@@ -62,6 +64,21 @@ void MainWindow::on_actionOpen_File_triggered()
 
     // add file to list
     new PlaylistItem(ui->playList, fileUrl);
+}
+
+void MainWindow::on_actionAdd_Background_Image_triggered()
+{
+    QString file = QFileDialog::getOpenFileName(this, tr("Select background image"), "");
+    if (!file.isEmpty()) {
+        QPixmap map;
+        if (map.load(file)) {
+            ui->bgIm->setPixmap(map);
+            ui->bgIm->setGeometry(0, 0, this->width(), this->height());
+            ui->bgIm->setScaledContents(true);
+        } else {
+            return;
+        }
+    }
 }
 
 void MainWindow::on_volumeCtr_valueChanged(int value)
