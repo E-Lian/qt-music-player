@@ -34,8 +34,9 @@ void PlayerControl::pause() {
     player->pause();
 }
 
-void PlayerControl::setMedia(QUrl url) {
-    player->setSource(url);
+void PlayerControl::setMedia(PlaylistItem *media) {
+    player->setSource(media->getUrl());
+    curr = media;
 }
 
 void PlayerControl::setVolume(int volume) {
@@ -48,6 +49,10 @@ void PlayerControl::setVolume(int volume) {
 void PlayerControl::setPosition(int pos) {
     qint64 value = pos * getLength() / 100;
     player->setPosition(value);
+}
+
+PlaylistItem* PlayerControl::getCurr() {
+    return curr;
 }
 
 QString PlayerControl::getName() {

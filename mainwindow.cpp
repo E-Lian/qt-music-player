@@ -9,6 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
     playerControl = new PlayerControl(this);
     posSliderPressed = false;
 
+    // setup playlist drag and drop
+    ui->playList->setDragDropMode(QAbstractItemView::InternalMove);
+    ui->playList->setDefaultDropAction(Qt::MoveAction);
+    ui->playList->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui->playList->setDragEnabled(true);
+    ui->playList->setAcceptDrops(true);
+
     // set file length when ready
     connect(playerControl, &PlayerControl::durationReady, this, [this](const QString &duration) {
         ui->fileLength->setText(duration);
@@ -78,20 +85,21 @@ void MainWindow::on_posCtr_sliderReleased()
 void MainWindow::on_playList_itemDoubleClicked(QListWidgetItem *item)
 {
     PlaylistItem *media = (PlaylistItem *) item;
-    playerControl->setMedia(media->getUrl());
+    playerControl->setMedia(media);
     ui->fileName->setText(media->getName());
 }
 
 void MainWindow::playNext() {
     // get next item
-    int curr = ui->playList->currentRow();
+    PlaylistItem *currItem = playerControl->getCurr();
+    int curr = ui->playList->row(currItem);
     PlaylistItem *next = (PlaylistItem *) ui->playList->item(curr + 1);
     // goes back to first one if reached the end
     if (next == nullptr) {
         next = (PlaylistItem *) ui->playList->item(0);
     }
     // set media to next
-    playerControl->setMedia(next->getUrl());
+    playerControl->setMedia(next);
     // update ui
     ui->fileName->setText(next->getName());
     ui->playList->setCurrentItem(next);
@@ -101,14 +109,15 @@ void MainWindow::playNext() {
 
 void MainWindow::playPrev() {
     // get prev item
-    int curr = ui->playList->currentRow();
+    PlaylistItem *currItem = playerControl->getCurr();
+    int curr = ui->playList->row(currItem);
     PlaylistItem *prev = (PlaylistItem *) ui->playList->item(curr - 1);
-    // goes back to last one if reached the end
+    // goes back to last one if reached the top
     if (prev == nullptr) {
         prev = (PlaylistItem *) ui->playList->item(ui->playList->count() - 1);
     }
     // set media to prev
-    playerControl->setMedia(prev->getUrl());
+    playerControl->setMedia(prev);
     // update ui
     ui->fileName->setText(prev->getName());
     ui->playList->setCurrentItem(prev);
